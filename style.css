@@ -7,7 +7,6 @@
   --purple-accent: #b259f0;
 }
 
-/* Adds the custom purple highlight when users select text */
 ::selection {
   background-color: var(--purple-accent);
   color: #110c17;
@@ -21,25 +20,20 @@ body {
   margin: 0;
   padding: 2rem 1.5rem;
 
-  /* 1. Draws the grid using your border color */
   background-image:
     linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
 
-  /* 2. Sets how big each square is */
   background-size: 50px 50px;
 
-  /* 3. Applies the infinite moving animation */
   animation: scrollGrid 5s linear infinite;
 }
 
-/* 4. The actual animation that makes it move */
 @keyframes scrollGrid {
   0% {
     background-position: 0px 0px;
   }
   100% {
-    /* This must match your background-size exactly for a seamless loop */
     background-position: 40px 40px;
   }
 }
@@ -62,7 +56,6 @@ h1 {
 
 .name {
   color: var(--purple-accent);
-  /* A slight italic tilt to your name for personality */
   font-style: italic;
 }
 
@@ -72,7 +65,6 @@ h1 {
   margin: 0;
 }
 
-/* Adds a raw // before your section titles */
 h2 {
   font-size: 1.25rem;
   margin: 0 0 1.5rem 0;
@@ -86,7 +78,6 @@ h2::before {
   opacity: 0.7;
 }
 
-/* --- Tracks (The new side-by-side layout) --- */
 .tracks {
   margin-bottom: 4rem;
 }
@@ -106,7 +97,7 @@ h2::before {
 }
 
 .track-info {
-  flex: 1; /* Forces the text to take up the left side */
+  flex: 1;
 }
 
 .track-info h3 {
@@ -152,8 +143,6 @@ a:hover {
   border-bottom: 2px dashed var(--purple-accent);
 }
 
-/* --- Mobile Fix --- */
-/* If the screen gets too small (like on a phone), stack them again */
 @media (max-width: 500px) {
   .track-row {
     flex-direction: column;
