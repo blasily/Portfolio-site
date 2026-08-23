@@ -1,0 +1,165 @@
+:root {
+  --bg-color: #110c17;
+  --border-color: #3b2d4c;
+  --grid-color: #3b2d4c46;
+  --text-main: #e2dceb;
+  --text-muted: #a097a8;
+  --purple-accent: #b259f0;
+}
+
+/* Adds the custom purple highlight when users select text */
+::selection {
+  background-color: var(--purple-accent);
+  color: #110c17;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 2rem 1.5rem;
+
+  /* 1. Draws the grid using your border color */
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+
+  /* 2. Sets how big each square is */
+  background-size: 50px 50px;
+
+  /* 3. Applies the infinite moving animation */
+  animation: scrollGrid 5s linear infinite;
+}
+
+/* 4. The actual animation that makes it move */
+@keyframes scrollGrid {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    /* This must match your background-size exactly for a seamless loop */
+    background-position: 40px 40px;
+  }
+}
+
+.container {
+  max-width: 650px;
+  margin: 2rem auto 4rem auto;
+}
+
+/* --- Header --- */
+header {
+  margin-bottom: 4rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.5px;
+}
+
+.name {
+  color: var(--purple-accent);
+  /* A slight italic tilt to your name for personality */
+  font-style: italic;
+}
+
+.bio {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Adds a raw // before your section titles */
+h2 {
+  font-size: 1.25rem;
+  margin: 0 0 1.5rem 0;
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 0.5rem;
+  font-weight: 600;
+}
+h2::before {
+  content: "// ";
+  color: var(--purple-accent);
+  opacity: 0.7;
+}
+
+/* --- Tracks (The new side-by-side layout) --- */
+.tracks {
+  margin-bottom: 4rem;
+}
+
+.track-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Removes the bottom border from the last track */
+.track-row:last-child {
+  border-bottom: none;
+}
+
+.track-info {
+  flex: 1; /* Forces the text to take up the left side */
+}
+
+.track-info h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.1rem;
+  color: var(--text-main);
+}
+
+.track-info p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.player-box {
+  width: 100%;
+  max-width: 250px; /* Keeps the player constrained on the right */
+  background-color: #1a1324;
+  border: 1px dashed var(--border-color);
+  padding: 1rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* --- Links --- */
+.links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+a {
+  color: var(--text-main);
+  text-decoration: none;
+  border-bottom: 2px solid var(--purple-accent);
+  padding-bottom: 2px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+a:hover {
+  color: var(--purple-accent);
+  border-bottom: 2px dashed var(--purple-accent);
+}
+
+/* --- Mobile Fix --- */
+/* If the screen gets too small (like on a phone), stack them again */
+@media (max-width: 500px) {
+  .track-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .player-box {
+    max-width: 100%;
+  }
+}
