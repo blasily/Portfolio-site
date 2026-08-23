@@ -12,6 +12,10 @@
   color: #110c17;
 }
 
+footer {
+  margin-top: 4rem;
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-main);
@@ -25,7 +29,6 @@ body {
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
 
   background-size: 50px 50px;
-
   animation: scrollGrid 5s linear infinite;
 }
 
@@ -43,7 +46,10 @@ body {
   margin: 2rem auto 4rem auto;
 }
 
-/* --- Header --- */
+/* ========================================== */
+/* HEADER                                     */
+/* ========================================== */
+
 header {
   margin-bottom: 4rem;
 }
@@ -65,6 +71,35 @@ h1 {
   margin: 0;
 }
 
+/* ========================================== */
+/* NAVIGATION & HEADINGS                      */
+/* ========================================== */
+
+.main-nav {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.main-nav a {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.main-nav a:hover {
+  color: var(--purple-accent);
+  border-bottom: none;
+}
+
+.main-nav a.active {
+  color: var(--purple-accent);
+}
+
 h2 {
   font-size: 1.25rem;
   margin: 0 0 1.5rem 0;
@@ -72,28 +107,36 @@ h2 {
   padding-bottom: 0.5rem;
   font-weight: 600;
 }
+
 h2::before {
   content: "// ";
   color: var(--purple-accent);
   opacity: 0.7;
 }
 
+/* ========================================== */
+/* AUDIO TRACKS SECTION                       */
+/* ========================================== */
+
 .tracks {
   margin-bottom: 4rem;
 }
 
 .track-row {
-  /* We remove the flexbox from the main row so things stack vertically */
   display: block;
   padding: 1.5rem 0;
   border-bottom: 1px solid var(--border-color);
 }
 
-/* This puts the Title on the left and the Player on the right */
+.track-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
 .track-header {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Keeps the play button perfectly aligned with the title */
+  align-items: center;
   gap: 1rem;
   margin-bottom: 0.5rem;
 }
@@ -106,16 +149,10 @@ h2::before {
 
 .audio-container {
   width: 100%;
-  max-width: 280px; /* Keeps the player from getting too wide */
+  max-width: 300px;
+  margin-top: 0.25rem;
 }
 
-/* Removes the bottom border from the last track in the list */
-.track-row:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-/* The description now has room to breathe */
 .track-desc {
   margin: 0;
   color: var(--text-muted);
@@ -123,37 +160,137 @@ h2::before {
   line-height: 1.4;
 }
 
-.audio-container {
-  width: 100%;
-  max-width: 300px;
-  /* Pushes the player down slightly to align perfectly with the title */
-  margin-top: 0.25rem;
+/* ========================================== */
+/* GAMES SECTION                              */
+/* ========================================== */
+
+.games {
+  margin-bottom: 4rem;
 }
 
-.track-info h3 {
+.game-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.5rem 0;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.game-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.game-info h3 {
   margin: 0 0 0.25rem 0;
   font-size: 1.1rem;
   color: var(--text-main);
 }
 
-.track-info p {
+.game-info .studio {
   margin: 0;
+  font-size: 0.9rem;
   color: var(--text-muted);
+}
+
+.game-details {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.game-details .role {
+  color: var(--purple-accent);
+  font-weight: 600;
   font-size: 0.95rem;
 }
 
-.player-box {
-  width: 100%;
-  max-width: 250px; /* Keeps the player constrained on the right */
-  background-color: #1a1324;
-  border: 1px dashed var(--border-color);
-  padding: 1rem;
-  text-align: center;
+.game-details .status {
   color: var(--text-muted);
   font-size: 0.85rem;
 }
 
-/* --- Links --- */
+/* Groups the optional image and the title together */
+.game-left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* Styles the optional game image to look clean and square */
+.game-cover {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+/*
+  Overrides your global <a> tag styles so clickable game rows
+  don't get weird purple underlines
+*/
+a.game-link {
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 1.5rem; /* Restores the correct padding */
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+/* Makes the title glow purple when you hover over the clickable row */
+a.game-link:hover h3 {
+  color: var(--purple-accent);
+  transition: color 0.2s ease;
+}
+
+a.game-link:hover {
+  /* Prevents the dashed line from turning solid on hover */
+  border-bottom: 1px dashed var(--border-color);
+}
+
+/* ========================================== */
+/* TESTIMONIALS SECTION                       */
+/* ========================================== */
+
+.quote-block {
+  margin-bottom: 2.5rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--purple-accent);
+}
+
+.quote-block:last-child {
+  margin-bottom: 0;
+}
+
+.quote-text {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.quote-author {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  color: var(--purple-accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.author-role {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ========================================== */
+/* FOOTER & LINKS                             */
+/* ========================================== */
+
 .links {
   display: flex;
   gap: 1.5rem;
@@ -173,12 +310,31 @@ a:hover {
   border-bottom: 2px dashed var(--purple-accent);
 }
 
+/* We override the default link style specifically for the nav menu */
+.main-nav a {
+  border-bottom: none;
+}
+
+/* ========================================== */
+/* MOBILE RESPONSIVE FIXES                    */
+/* ========================================== */
+
 @media (max-width: 500px) {
-  .track-row {
+  /* Fixes the games list stacking */
+  .game-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .game-details {
+    text-align: left;
+  }
+
+  /* Fixes the audio player stacking */
+  .track-header {
     flex-direction: column;
     align-items: flex-start;
   }
-  .player-box {
+  .audio-container {
     max-width: 100%;
   }
 }
